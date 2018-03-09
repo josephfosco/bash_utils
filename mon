@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+function MON {
+if [ -z "$1" ]
+then
+    echo "Turn on display: right (r) - left (l) - above (a) - mirror (m) - off(o)?"
+    echo "Move workspace: Right (R) - Left (L) - Above (A) - Below (B)"
+    read SIDE
+else
+    SIDE=$1
+fi
+
+case $SIDE in
+r)
+    xrandr --output DP-1 --auto --right-of eDP-1
+    exit;;
+R)
+    i3-msg move workspace to output right
+    exit;;
+l)
+    xrandr --output DP-1 --auto --left-of eDP-1
+    exit;;
+L)
+    i3-msg move workspace to output left
+    exit;;
+o|O)
+    xrandr --output DP-1 --off
+    exit;;
+m|M)
+    xrandr --output DP-1 --auto --same-as eDP-1
+    exit;;
+a|u)
+    xrandr --output DP-1 --auto --above eDP-1
+    exit;;
+A|U)
+    i3-msg move workspace to output up
+    exit;;
+B|D)
+    i3-msg move workspace to output down
+    exit;;
+*)
+    echo "you must select (r, l, a, R, L A, B, o), or use CTRL+C to exit"
+    MON
+esac
+}
+
+MON $1
