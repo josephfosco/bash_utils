@@ -25,6 +25,7 @@ L)
     exit;;
 o|O)
     xrandr --output DP-1 --off
+    xrandr --output HDMI-2 --off
     exit;;
 m|M)
     xrandr --output DP-1 --auto --same-as eDP-1
@@ -37,6 +38,9 @@ A|U)
     exit;;
 B|D)
     i3-msg move workspace to output down
+    exit;;
+hm|HM)
+    xrandr --output HDMI-2 --auto --same-as eDP-1
     exit;;
 *)
     echo "you must select (r, l, a, R, L A, B, o), or use CTRL+C to exit"
